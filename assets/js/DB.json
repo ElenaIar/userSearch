@@ -3,7 +3,25 @@
 		{
 			"name": "name1",
 			"lastName": "lastName1",
+			"age": 30,
+			"dateOfBirth": "13.10.1978",
+			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
+			"position": "position1",
+			"photo": "user.jpg"
+		},
+		{
+			"name": "name1",
+			"lastName": "lastName1",
 			"age": 31,
+			"dateOfBirth": "13.10.1978",
+			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
+			"position": "position1",
+			"photo": "user.jpg"
+		},
+		{
+			"name": "name1",
+			"lastName": "lastName1",
+			"age": 32,
 			"dateOfBirth": "13.10.1978",
 			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
 			"position": "position1",

@@ -1,22 +1,15 @@
 // pubSub
 ( function( $ ){
-
  var o = $( {} );
-
  $.each( {
-
   trigger: 'publish',
   on: 'subscribe',
   off: 'unsubscribe'
-
  }, function( key, val ){
-
   jQuery[val] = function(){
     o[key].apply( o, arguments );
   }
-
  } );
-
 } )( jQuery );
 
 // template
@@ -29,7 +22,7 @@ function Template( obj ){
     <div class="media">
       <div style="float: left;">
         <img class="mr-3" src="./assets/images/` + args.photo + `" alt="Generic placeholder image">
-        <h5 class="mt-0">` + name + ` ` + args.lastName + `</h5>
+        <h5 class="mt-0">` + args.name + ` ` + args.lastName + `</h5>
         <h6 class="mt-0">Date of birth: ` + args.dateOfBirth + `</h6>
         <h6 class="mt-0">Age: <b>` + args.age + `</b></h6>
         <h6 class="mt-0">Position: <b>` + args.position + `</b></h6>
@@ -55,12 +48,14 @@ var Connector = ( function(){
 
     countPage: 0, // count page
 
+    searchQuery: '', // search query
+
     init: function(){
 
       var _this = this;
 
       // run getJSON function
-      _this.runGetUsersData( _this.selectNumber, _this.activePage );
+      _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
 
       /*
       * Subscribe pagination.
@@ -71,7 +66,7 @@ var Connector = ( function(){
         _this.activePage = obj.activePage;
 
         // run getUserData function
-        _this.runGetUsersData( _this.selectNumber, _this.activePage );
+        _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
 
       } );
 
@@ -86,7 +81,22 @@ var Connector = ( function(){
         _this.activePage = 1;
 
         // run getUserData function
-        _this.runGetUsersData( _this.selectNumber, _this.activePage );
+        _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
+
+      } );
+
+      /*
+      * Search.
+      *
+      */
+      $.subscribe( 'searchUserEvent', function( e, obj ){
+
+        _this.searchQuery = obj.searchQuery;
+
+        _this.activePage = 1;
+
+        // run getUserData function
+        _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
 
       } );
 
@@ -131,14 +141,14 @@ var Connector = ( function(){
 
       $.publish( 'connectorEvent', obj );
 
-      console.log( obj );   
+      //console.log( obj );   
 
     },
 
     // get data users
-    runGetUsersData: function( selectNumber, activePage ){
+    runGetUsersData: function( selectNumber, activePage, searchQuery ){
 
-      GetData.getData( selectNumber, activePage );
+      GetData.getData( selectNumber, activePage, searchQuery );
 
     }
 
@@ -172,12 +182,20 @@ var GetData = ( function(){
 
     },
 
-    getData: function( selectNumber, activePage ){
+    getData: function( selectNumber, activePage, searchQuery ){
 
       var _this = this;
 
+      var timer = null;
+
       var from = ( activePage * selectNumber ) - selectNumber + 1;
+
       var to = from + selectNumber - 1;
+
+      var objectItems = {};
+
+      // search
+      var query = searchQuery.toLowerCase();
 
       // create container
       _root.empty();
@@ -188,30 +206,58 @@ var GetData = ( function(){
 
       var result = $.getJSON( url, function( res ){
 
+        // ...
         $.each( res.users, function( index, item ){
 
-          var numberItem = index + 1;
+          if( this.name.toLowerCase().indexOf( query ) !== -1 ){
 
-          if( numberItem >= from && numberItem <= to ){
+            objectItems[index] = this;         
 
-            _this.render( index, item );
+          }
 
-          }          
+          clearTimeout( timer );
 
         } );
 
-        var countItems = res.users.length;
+        // ...
+        timer = setTimeout( function(){
 
-        console.log( 55555 );
+          var lengthObject = Object.keys( objectItems ).length;
 
-        // bublish for pagination
+          if( lengthObject <= selectNumber ){
+
+            $.each( objectItems, function( index, item ){
+
+                _this.render( index, item );
+
+            } );
+
+          } else{
+
+            $.each( objectItems, function( index, item ){
+
+              var numberItem = parseInt( index ) + 1;
+
+              if( numberItem >= from && numberItem <= to ){
+
+                _this.render( index, item );
+
+              }
+
+            } );
+
+          }
+
+        }, 400 );        
+
+        // bublish
         $.publish( 'getUsersEvent', {
 
           selectNumber: selectNumber,
 
           activePage: activePage,
 
-          countPage: Math.ceil( countItems / selectNumber )
+          countPage: Math.ceil( Object.keys( objectItems ).length / selectNumber )
 
         } );
 
@@ -259,6 +305,8 @@ var GetData = ( function(){
         photo: res.photo
       };
 
+      console.log( obj );
+
       $container.append( Template( obj ) );
 
     }
@@ -300,7 +348,7 @@ var Pagination = ( function(){
 
           activePage: pageN
 
-        }
+        };
 
         $.publish( 'paginationEvent' , obj );
 
@@ -314,12 +362,20 @@ var Pagination = ( function(){
 
       if( countPage > 1 ){
 
+        var paginationItem = '';
+
         // set pagination
-        for( var i = 1; i <= countPage; i++ ){
+        for( var i = 1; i <= countPage; i++ ){          
 
-          var activeClass = ( activePage === i ) ? 'active' : '';
+          if( activePage === i ){
 
-          var paginationItem = '<li class="page-item ' + activeClass + '"><a class="page-link" href="#" data-page-number="' + i + '">' + i + '</a></li>';
+            paginationItem = '<li class="page-item active"><span>' + i + '</span></li>';
+
+          } else{
+
+            paginationItem = '<li class="page-item"><a class="page-link" href="#" data-page-number="' + i + '">' + i + '</a></li>';
+
+          }          
           
           paginationContainer.append( paginationItem );
 
@@ -365,9 +421,62 @@ var SelectNumber = ( function(){
 
         $.publish( 'changeNumberItemsEvent', obj );
 
-        console.log( $( this ).val() );
+        //console.log( $( this ).val() );
 
       } );
+
+    }
+
+  }
+
+} )();
+
+/**********************************************
+* Search query
+*/
+var Search = ( function(){
+
+  var timer = '';
+
+  return {
+
+    init: function(){
+
+      var _this = this;
+
+      _this.event();
+
+    },
+
+    event: function(){
+
+      var searchInput = $( '#searchUserInput' );
+
+      var _this = this;
+
+      searchInput.keyup( function( e, query ){
+        
+        _this.searchUser( searchInput );
+
+      } );
+
+    },
+
+    searchUser: function( searchInput ){
+
+      clearTimeout( timer );
+
+      timer = ( ( searchInput.val().length >= 3 ) || ( searchInput.val().length === 0 ) ) && setTimeout( function(){
+
+        var obj = {
+
+          searchQuery: ( searchInput.val().length === 0 ) ? '' : searchInput.val()
+
+        };
+
+        $.publish( 'searchUserEvent', obj );
+
+      },500 );      
 
     }
 
@@ -386,6 +495,7 @@ var App = ( function(){
 
       Pagination.init();
       SelectNumber.init();
+      Search.init();
       Connector.init();
 
     }
