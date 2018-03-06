@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Users search </title>
+
+	<link href="./assets/css/jquery-ui.min.css" rel="stylesheet">
+	<link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<form>
+			
+			<div class="col-md-6">
+				<div class="form-group row">
+				  <label for="example-search-input" class="col-2 col-form-label">Search</label>
+				  <div class="col-10">
+				    <input class="form-control" type="search" value="" placeholder="Enter the last name of the user" id="searchUserInput">
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<label for="numberOfItems">number of items per page</label>
+				<select id="numberOfItems" class="col-md-10">
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="30">30</option>
+					<option value="50">50</option>
+				</select>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<div id="root"></div>
+
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination" id="paginationUl">
+			    <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+			    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+			    <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+			  </ul>
+			</nav>			
+
+		</div>
+
+	</div>
+</div>
+
+<script src="./assets/js/jquery.js"></script>
+<script src="./assets/js/jquery-ui.min.js"></script>
+<script src="./assets/js/main.js"></script>
+	
+</body>
+</html>
