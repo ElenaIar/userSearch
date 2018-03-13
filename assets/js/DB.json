@@ -1,94 +1,100 @@
 {
 	"users": [
 		{
-			"name": "name1",
-			"lastName": "lastName1",
-			"age": 30,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position1",
-			"photo": "user.jpg"
+			"name": "Babette",
+			"lastName": "Smith",
+			"dateOfBirth": "09.10.1992",
+			"personalInformation": "It’s my pleasure to provide this letter of recommendation for James as he seeks employment in software sales with Streambase. As James’s sole direct manager at Waretech, I’ve worked closely with him over the past three years, sharing the same open office space the majority of the time. James showed excellent communication skills and consistently exceeded company quotas. On a personal level, he’s charismatic and well-spoken, both qualities that have served him well in his role as software sales professional.",
+			"position": "Software Developer",
+			"photo": "user6.jpg"
 		},
 		{
-			"name": "name1",
-			"lastName": "lastName1",
-			"age": 31,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position1",
-			"photo": "user.jpg"
+			"name": "Caitlan",
+			"lastName": "Johnson",
+			"dateOfBirth": "16.08.1989",
+			"personalInformation": "It’s my honor and pleasure to provide this letter of recommendation for Julia as she pursues an art teaching position with Cityville Middle School. As the principal of Townston Middle School, I’ve enjoyed having Julia on the teaching team for grades 6 through 8. We’ll all miss her and her contributions to our school community.",
+			"position": "Dentist",
+			"photo": "user7.jpg"
 		},
 		{
-			"name": "name1",
-			"lastName": "lastName1",
-			"age": 32,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position1",
-			"photo": "user.jpg"
+			"name": "Jacob",
+			"lastName": "Williams",
+			"dateOfBirth": "08.18.1989",
+			"personalInformation": "It’s my pleasure to provide this letter of recommendation for Charlie, who worked as a server at Solera Restaurant for the past two summers. As Charlie’s direct manager who worked closely with him throughout his time here, I was impressed with his work ethic, friendly personality, and ability to work well under pressure. As he graduates from Johnson & Wales with a degree in Hospitality Management, I’m confident that he has the skills to do well as an Assistant Restaurant Manager with Tapea Restaurant Group.",
+			"position": "Physician Assistant",
+			"photo": "user1.png"
 		},
 		{
-			"name": "name2",
-			"lastName": "lastName2",
-			"age": 32,
-			"dateOfBirth": "12.10.1999",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position2",
-			"photo": "user.jpg"
+			"name": "Dabria",
+			"lastName": "Brown",
+			"dateOfBirth": "21.10.1979",
+			"personalInformation": "I’m very pleased to recommend Sara for the position of Web Designer with SunStar, Inc. Sara has worked with our clothing company, Oak Tree Co., on a freelance basis over the past several years. While I’ve communicated with Sara remotely via video chat and email, I’ve gotten to know her as a reliable employee with rock star web design skills. I have no doubt that she’ll continue to create outstanding work as a full-time web designer with your company.",
+			"position": "Nurse Practitioner",
+			"photo": "user8.jpg"
 		},
 		{
-			"name": "name3",
-			"lastName": "lastName3",
-			"age": 35,
-			"dateOfBirth": "10.10.1997",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position3",
-			"photo": "user.jpg"
+			"name": "Dylan",
+			"lastName": "Jones",
+			"dateOfBirth": "02.03.1997",
+			"personalInformation": "First, Alex embodies our “customer-centric” philosophy and delivers an extraordinary shopping and ownership experience to our clients. She has impressed me with her warmth, wisdom, and kindness online, over the phone, and in person. A few months ago, for example, she spent an hour consoling a woman who was going through a tough time. The customer has since bought several glasses from us and referred friends and family members who have done the same. Alex builds strong relationships with customers and strengthens our business in the long term. Outstanding support is a cornerstone of our business model, and Alex consistently provides that service as a Customer Experience Advisor.",
+			"position": "Orthodontist",
+			"photo": "user2.jpg"
 		},		
 		{
-			"name": "name4",
-			"lastName": "lastName4",
-			"age": 34,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position4",
-			"photo": "user.jpg"
+			"name": "Daniel",
+			"lastName": "Miller",
+			"dateOfBirth": "28.11.1984",
+			"personalInformation": "As an intern in our Editorial Department, Adam had a number of responsibilities. He worked with members of the editorial staff on various projects, including reading and reporting on manuscript submissions, editing promotional materials, and completing fact checks. Adam was especially skilled at seeking out new authors on online journals and blogs, even introducing us to a new writer with whom we have started to collaborate! It’s clear that Adam has a passion for the written word and a great eye for promising young authors.",
+			"position": "Statistician",
+			"photo": "user3.jpg"
 		},
 		{
-			"name": "name5",
-			"lastName": "lastName5",
-			"age": 35,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position5",
-			"photo": "user.jpg"
+			"name": "Jasmine",
+			"lastName": "Davis",
+			"dateOfBirth": "15.06.1981",
+			"personalInformation": "It’s my great pleasure to provide this letter of recommendation for Jerry as he pursues an English as a Foreign Language teaching position with English International School in South Korea. As a professor of English literature at XYZ University, I taught Jerry in two classes and served as his thesis advisor senior year. Jerry impressed me with his intellectual curiosity, passion for global cultures, and adventurous spirit. Given his background in English and experience living abroad, I’m confident that he would make an excellent addition to your school.",
+			"position": "Pediatrician",
+			"photo": "user9.jpg"
 		},
 		{
-			"name": "name6",
-			"lastName": "lastName6",
-			"age": 36,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position6",
-			"photo": "user.jpg"
+			"name": "Joel",
+			"lastName": "Garcia",
+			"dateOfBirth": "19.07.1979",
+			"personalInformation": "Beyond his studies and volunteer work with ESL students, Jerry broadened his horizons with a semester studying abroad and living with a host family in Buenos Aires. He spoke highly of his host family, telling me about their nightly dinners and conversations in Spanish. He's even visiting them again this summer to attend his host sister's fiesta de quince. Jerry loves to meet new people and travel not merely as a tourist, but as an engaged participant. This teaching position in South Korea would allow him to continue doing just that.",
+			"position": "Obstetrician and Gynecologist",
+			"photo": "user4.jpg"
 		},
 		{
-			"name": "name7",
-			"lastName": "lastName7",
-			"age": 37,
-			"dateOfBirth": "13.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position7",
-			"photo": "user.jpg"
+			"name": "Emily",
+			"lastName": "Rodriguez",
+			"dateOfBirth": "16.05.1970",
+			"personalInformation": "I taught Jerry his sophomore and senior year in Masterpieces of World Literature and Fictions of Science, Technology, and Society. I also worked closely with him on his senior thesis, an exploration of Jewish literature in Argentina that earned him the distinction of summa cum laude. He’s a talented writer who gives insightful commentary in essays and class discussions. I know that Jerry has the verbal skills and depth of thought to be an engaging teacher.",
+			"position": "Oral and Maxillofacial Surgeon",
+			"photo": "user10.jpg"
 		},
 		{
-			"name": "name8",
-			"lastName": "lastName8",
-			"age": 24,
+			"name": "Kevin",
+			"lastName": "Wilson",
 			"dateOfBirth": "01.10.1978",
-			"personalInformation": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod ad fugit alias expedita. Pariatur repellat odit esse quaerat dolor repudiandae earum, nisi maiores ab iure, qui rem quis eveniet provident.",
-			"position": "position8",
-			"photo": "user.jpg"
+			"personalInformation": "I first met Rosa when she and her family moved into the house next door. We quickly found our paths crossing not just as neighbors, but also as fellow parents involved in the PTA. We and our families have become close friends, and over the years, we’ve worked together on a number of neighborhood events, like the Halloween scavenger hunt and annual block party. Rosa has always amazed me with her commitment to our community. With her spirit of giving and skill for community organizing, Rosa lives by Rotary Club’s primary motto, “Service above self.”",
+			"position": "Physician",
+			"photo": "user5.jpg"
+		},
+		{
+			"name": "Emma",
+			"lastName": "Hill",
+			"dateOfBirth": "02.04.1984",
+			"personalInformation": "Finally, James has proven himself to be a strong cultural fit here at Waretech. He’s always ready to lend a helping hand to his teammates and contributes during brainstorming sessions and meetings between the sales and marketing teams. Last month, James co-led an enlightening meeting on content marketing and account management. Outside of official events, James also takes turns leading weekly spin classes at our in-house gym. James is an active member of the Waretech team and supports his colleagues professionally and personally (not to mention athletically!).",
+			"position": "Occupational Therapist",
+			"photo": "user11.jpg"
+		},
+		{
+			"name": "Olivia",
+			"lastName": "Campbell",
+			"dateOfBirth": "04.09.1988",
+			"personalInformation": "On a more personal level, Rosa is a cherished friend and all around lovely person. She’s thoughtful, reliable, and warm, and my kids and I have spent many rainy days mixing up cookie dough and decorating cupcakes in her kitchen. Rosa has worked hard to get where she is today, and she truly deserves all the success that has come her way as a parent and local business owner.",
+			"position": "Physical Therapist",
+			"photo": "user12.jpg"
 		}
 	]
 }

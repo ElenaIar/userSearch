@@ -1,4 +1,8 @@
-// pubSub
+/*
+* PubSub.
+* The function performs actions to send changes
+* to the modules and signs other modules to events.
+*/ 
 ( function( $ ){
  var o = $( {} );
  $.each( {
@@ -12,7 +16,9 @@
  } );
 } )( jQuery );
 
-// template
+/*
+* Template for conclusion html.
+*/
 function Template( obj ){
 
   var args = obj;
@@ -21,7 +27,7 @@ function Template( obj ){
     <h3>` + args.shortName + `. ` + args.lastName + `</h3>
     <div class="media">
       <div style="float: left;">
-        <img class="mr-3" src="./assets/images/` + args.photo + `" alt="Generic placeholder image">
+        <img class="mr-3" src="./assets/images/users/` + args.photo + `" alt="Generic placeholder image">
         <h5 class="mt-0">` + args.name + ` ` + args.lastName + `</h5>
         <h6 class="mt-0">Date of birth: ` + args.dateOfBirth + `</h6>
         <h6 class="mt-0">Age: <b>` + args.age + `</b></h6>
@@ -37,7 +43,11 @@ function Template( obj ){
 
 };
 
-// connector
+/*
+* Connector.
+* The module performs the connection action.
+* It receives events from other modules and sends ads to everyone who subscribed to it.
+*/ 
 var Connector = ( function(){
 
   return {
@@ -58,8 +68,7 @@ var Connector = ( function(){
       _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
 
       /*
-      * Subscribe pagination.
-      * 
+      * Subscribe to the navigation events.
       */ 
       $.subscribe( 'paginationEvent', function( e, obj ){
 
@@ -71,8 +80,7 @@ var Connector = ( function(){
       } );
 
       /*
-      * Subscribe change number items.
-      *
+      * Subscribe to changes in the number of items on the page.
       */
       $.subscribe( 'changeNumberItemsEvent', function( e, obj ){
 
@@ -80,14 +88,14 @@ var Connector = ( function(){
 
         _this.activePage = 1;
 
-        // run getUserData function
+        // run runGetUsersData function
         _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
 
       } );
 
       /*
       * Search.
-      *
+      * Subscribe to enter a search query.
       */
       $.subscribe( 'searchUserEvent', function( e, obj ){
 
@@ -95,7 +103,7 @@ var Connector = ( function(){
 
         _this.activePage = 1;
 
-        // run getUserData function
+        // run runGetUsersData function
         _this.runGetUsersData( _this.selectNumber, _this.activePage, _this.searchQuery );
 
       } );
@@ -104,8 +112,7 @@ var Connector = ( function(){
       **********************************************/
 
       /**********************************************
-      * Subscribe get users function.
-      *
+      * Subscribe to a data collection event
       */ 
       $.subscribe( 'getUsersEvent', function( e, obj ){
 
@@ -117,13 +124,12 @@ var Connector = ( function(){
 
         _this.publishConnector();
 
-      } );      
+      } );
 
     },
 
     /*
     * Send messages to all modules.
-    *
     */
     publishConnector: function(){
 
@@ -139,13 +145,11 @@ var Connector = ( function(){
 
       };
 
-      $.publish( 'connectorEvent', obj );
-
-      //console.log( obj );   
+      $.publish( 'connectorEvent', obj ); 
 
     },
 
-    // get data users
+    // Receive user data
     runGetUsersData: function( selectNumber, activePage, searchQuery ){
 
       GetData.getData( selectNumber, activePage, searchQuery );
@@ -157,19 +161,19 @@ var Connector = ( function(){
 } )();
 
 /**********************************************
-* Get data
+* Receive user data from JSON file and rendering it into DOM.
 */ 
 var GetData = ( function(){
 
-  var url = 'assets/js/DB.json';
+  var url = 'assets/js/DB.json'; // JSON file
 
-  var _root = $( '#root' );
+  var _root = $( '#root' ); // The main element
 
-  var container = '<div id="accordion"></div>';
+  var container = '<div id="accordion"></div>'; // Container whit elements
 
-  var $container = {};
+  var $container = {}; // Container variable
 
-  var icons = {
+  var icons = { // Icons
     header: "ui-icon-circle-arrow-e",
     activeHeader: "ui-icon-circle-arrow-s"
   }; 
@@ -182,6 +186,7 @@ var GetData = ( function(){
 
     },
 
+    // The main function for getting user data and rendering.
     getData: function( selectNumber, activePage, searchQuery ){
 
       var _this = this;
@@ -194,7 +199,7 @@ var GetData = ( function(){
 
       var objectItems = {};
 
-      // search
+      // search query
       var query = searchQuery.toLowerCase();
 
       // create container
@@ -206,20 +211,28 @@ var GetData = ( function(){
 
       var result = $.getJSON( url, function( res ){
 
-        // ...
+        // Sort the data and enters it into object.
         $.each( res.users, function( index, item ){
 
           if( this.name.toLowerCase().indexOf( query ) !== -1 ){
 
-            objectItems[index] = this;         
+            objectItems[index] = this;
 
-          }
+          } else if( this.lastName.toLowerCase().indexOf( query ) !== -1 ){
+
+            objectItems[index] = this;
+
+          } else if( this.personalInformation.toLowerCase().indexOf( query ) !== -1 ){
+
+            objectItems[index] = this;
+
+          } 
 
           clearTimeout( timer );
 
         } );
 
-        // ...
+        // Get sorting data and pass it to the DOM.
         timer = setTimeout( function(){
 
           var lengthObject = Object.keys( objectItems ).length;
@@ -228,9 +241,26 @@ var GetData = ( function(){
 
             $.each( objectItems, function( index, item ){
 
-                _this.render( index, item );
+                _this.render( index, item, query );
 
             } );
+
+            // If nothing found.
+            if( lengthObject === 0 ){
+
+              var obj = {
+                name: '',
+                lastName: '',
+                age: '',
+                dateOfBirth: '',
+                personalInformation: 'Nothing found',
+                position: '',
+                photo: '404.png'
+              }
+              
+              _this.render( 0, obj, '' );
+
+            }
 
           } else{
 
@@ -240,7 +270,7 @@ var GetData = ( function(){
 
               if( numberItem >= from && numberItem <= to ){
 
-                _this.render( index, item );
+                _this.render( index, item, query );
 
               }
 
@@ -250,7 +280,7 @@ var GetData = ( function(){
 
         }, 400 );        
 
-        // bublish
+        // User data playback event.
         $.publish( 'getUsersEvent', {
 
           selectNumber: selectNumber,
@@ -263,7 +293,7 @@ var GetData = ( function(){
 
       } );
 
-      // run accordion
+      // Run the accordion script.
       setTimeout( function(){
 
         $container.accordion( {
@@ -291,22 +321,49 @@ var GetData = ( function(){
       },500 );      
 
     },
-    
-    render: function( index, res ){
+
+    // Data Rendering Function.
+    render: function( index, res, query ){
+      
+      var nameQuery = res.name;
+
+      var lastNameQuery = res.lastName;
+
+      var personalInformationQuery = res.personalInformation;
+
+      // Get the age of the user.
+      var _age = res.dateOfBirth.match( /\d\d\d\d/gi );
+
+      var today = new Date();
+
+      var year = today.getFullYear();
+
+      var age = year - _age[0];
+
+      if( query.length > 0 ){
+
+        var reg = new RegExp( query, 'ig' );
+
+        nameQuery = nameQuery.replace( reg, '<strong class="yellow">' + query + '</strong>' );
+
+        lastNameQuery = lastNameQuery.replace( reg, '<strong class="yellow">' + query + '</strong>' );
+
+        personalInformationQuery = personalInformationQuery.replace( reg, '<strong class="yellow">' + query + '</strong>' );
+
+      }      
 
       var obj = {
         shortName: res.name.substring( 0, 1 ),
-        name: res.name,
-        lastName: res.lastName,
-        age: res.age,
+        name: nameQuery,
+        lastName: lastNameQuery,
+        age: age,
         dateOfBirth: res.dateOfBirth,
-        personalInformation: res.personalInformation,
+        personalInformation: personalInformationQuery,
         position: res.position,
         photo: res.photo
       };
 
-      console.log( obj );
-
+      // Add an item to the container.
       $container.append( Template( obj ) );
 
     }
@@ -316,7 +373,7 @@ var GetData = ( function(){
 } )();
 
 /**********************************************
-* Pagination
+* Function of pagination.
 */ 
 var Pagination = ( function(){
 
@@ -328,6 +385,7 @@ var Pagination = ( function(){
 
       var _this = this;
 
+      // Subscribe to the connector Event.
       $.subscribe( 'connectorEvent', function( e, obj ){
 
         _this.render( obj.countPage, obj.activePage );
@@ -336,6 +394,7 @@ var Pagination = ( function(){
 
     },
 
+    // The event clicks the link for pagination.
     event: function( element ){
 
       element.on( 'click', function( e ){
@@ -393,7 +452,7 @@ var Pagination = ( function(){
 } )();
 
 /**********************************************
-* Select number of items
+* Select the number of items.
 */
 var SelectNumber = ( function(){
 
@@ -421,8 +480,6 @@ var SelectNumber = ( function(){
 
         $.publish( 'changeNumberItemsEvent', obj );
 
-        //console.log( $( this ).val() );
-
       } );
 
     }
@@ -432,7 +489,7 @@ var SelectNumber = ( function(){
 } )();
 
 /**********************************************
-* Search query
+* Search for users.
 */
 var Search = ( function(){
 
@@ -485,7 +542,7 @@ var Search = ( function(){
 } )();
 
 /**********************************************
-* Run application
+* Launch the application.
 */
 var App = ( function(){
 
